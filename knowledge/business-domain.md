@@ -1,6 +1,6 @@
-# Restaurant Domain Knowledge
+# Business Domain Knowledge
 
-Core entities, lifecycle rules, and business logic for a restaurant POS system.
+Core entities, lifecycle rules, and business logic for a business POS system.
 
 ---
 
@@ -91,7 +91,7 @@ interface Table {
 
 ## Order lifecycle
 
-```
+```text
 [open]
   ↓ items added/removed
   ↓ payment requested
@@ -151,7 +151,7 @@ See `architecture/printer.md` for the routing logic.
 
 Tax is applied to the subtotal after discounts:
 
-```
+```text
 subtotal = sum(item.unitPrice * item.quantity) for active items
 discounted_subtotal = subtotal - discount
 tax = discounted_subtotal * tax_rate
