@@ -10,6 +10,10 @@ Use this workflow once at the start of a new project. It guides through filling 
 `context.md`, recording the first architectural decisions in `memory.md`, and
 producing an initial implementation plan.
 
+An optional helper script (`.opencode/init.sh`) can accelerate Steps 2–3 by
+auto-detecting project files and prompting interactively. If the user prefers
+a conversational approach, fill in the fields manually as described below.
+
 ---
 
 ## Step 1 — Gather project information
@@ -28,7 +32,20 @@ Ask the user for the following. Collect all answers before proceeding
 
 ## Step 2 — Fill in context.md
 
-Using the answers from Step 1, populate `.opencode/context.md` completely.
+Two options (choose one):
+
+**Option A — Interactive script (recommended for CLI users):**
+Run `bash .opencode/init.sh`. It will:
+
+- Detect existing project files (`package.json`, `Dockerfile`, etc.) and pre-fill defaults.
+- Prompt through every section of `context.md`.
+- Optionally seed `memory.md` with the first architectural decision.
+- Leave any unknown field as `TBD — decision needed` (no hidden placeholders).
+
+After the script finishes, review the output and adjust any fields.
+
+**Option B — Manual (use when the user prefers conversation):**
+Populate `.opencode/context.md` directly using the answers from Step 1.
 Do not leave placeholder comments unfilled. If something is unknown, write
 "TBD — decision needed" so it is visible, not hidden behind a placeholder.
 
@@ -36,8 +53,12 @@ Do not leave placeholder comments unfilled. If something is unknown, write
 
 ## Step 3 — Record initial architectural decisions
 
-For each significant technical choice made in Step 1 (database selection, architecture style,
-cloud provider, language), write an entry in `.opencode/memory.md`:
+If you used Option A in Step 2 (the `init.sh` script), a first decision may
+already be in `memory.md`. Review it and fix any inaccuracies.
+
+For each significant technical choice made in Step 1 (database selection,
+architecture style, cloud provider, language), write (or verify) an entry in
+`.opencode/memory.md`:
 
 ```markdown
 ### [YYYY-MM-DD] [Decision title]
